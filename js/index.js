@@ -37,7 +37,7 @@ $('#formdown').keyup(function(){
         x += '<label class="radio"><input type=radio name=radio'+radiogroup+' value="'+name+'" checked> '+val+'</label>\n';
       
       } else if (val.startsWith('[] ')) {
-        val = val.split('[] ').join('');
+        val = val.split('[]').join('');
         name = name.split('[]-').join('');
         x += '<label><input type=checkbox name='+name+'> '+val+'</label>\n';
         
@@ -52,7 +52,12 @@ $('#formdown').keyup(function(){
         name = name.split('>textarea').join('');
         x += '<label>\n\t'+val+'\n\t<textarea rows=3 name="'+name+'"></textarea>\n</label>\n';
         
-      } else {
+      }else if(val.endsWith('>email')){
+        radio = false;   
+        val = val.split('>email').join('');
+        name = name.split('>email').join('');
+        x += '<label>\n\t'+val+'\n\t<input type="email" name="'+name+'">\n</label>\n';
+      }else {
         radio = false;        
         x += '<label>\n\t'+val+'\n\t<input type="text" name="'+name+'">\n</label>\n';
       }
